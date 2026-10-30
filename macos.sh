@@ -55,7 +55,8 @@ if command -v dockutil >/dev/null; then
     "/Applications/Visual Studio Code.app" \
     "/Applications/Claude.app" \
     "/Applications/Figma.app" \
-    "/Applications/Discord.app"; do
+    "/Applications/Discord.app" \
+    "/Applications/Slack.app"; do
     [[ -d "$app" ]] && dockutil --add "$app" --no-restart
   done
 fi

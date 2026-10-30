@@ -66,6 +66,7 @@ cask "stats"          # CPU/RAM/network in the menu bar
 cask "bambu-studio"   # slicer for Bine (Bambu Lab X2D)
 cask "freecad"        # CAD; Claude drives it through the FreeCAD MCP addon
 cask "discord"
+cask "slack"
 cask "vlc"
 cask "logi-options+"
 
