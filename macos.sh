@@ -23,7 +23,7 @@ if command -v defaultbrowser >/dev/null && [[ -d /Applications/Dia.app ]] \
 fi
 
 # ---- Login items ---------------------------------------------------------
-for app in Raycast Shottr 1Password logioptionsplus OrbStack; do
+for app in Raycast Shottr 1Password logioptionsplus OrbStack Stats; do
   [[ -d "/Applications/$app.app" ]] || continue
   osascript <<EOF
 tell application "System Events"

@@ -60,6 +60,8 @@ cask "google-chrome"
 cask "firefox"
 cask "raycast"
 cask "shottr"
+cask "stats"          # CPU/RAM/network in the menu bar
+cask "bambu-studio"   # slicer for Bine (Bambu Lab X2D)
 cask "discord"
 cask "vlc"
 cask "logi-options+"
