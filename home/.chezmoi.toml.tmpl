@@ -1,5 +1,11 @@
 # Remember where the repo lives (~/dotfiles) so `chezmoi` commands find it.
 sourceDir = {{ .chezmoi.workingTree | quote }}
 
+# Asked once per machine on `chezmoi init`. Main Mac = Lojze, server = Kosobrin.
+{{- $computerName := promptStringOnce . "computerName" "Computer name" "Lojze" }}
+
+[data]
+  computerName = {{ $computerName | quote }}
+
 [diff]
   pager = "less -R"

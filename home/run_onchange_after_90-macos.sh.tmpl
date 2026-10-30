@@ -1,5 +1,6 @@
 #!/bin/bash
 # macos.sh hash: {{ include (joinPath .chezmoi.workingTree "macos.sh") | sha256sum }}
+# computer name: {{ .computerName }}
 set -euo pipefail
 eval "$(/opt/homebrew/bin/brew shellenv)"
-bash {{ joinPath .chezmoi.workingTree "macos.sh" | quote }}
+COMPUTER_NAME={{ .computerName | quote }} bash {{ joinPath .chezmoi.workingTree "macos.sh" | quote }}

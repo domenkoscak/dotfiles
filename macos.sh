@@ -5,6 +5,35 @@ set -euo pipefail
 # Close System Settings so it doesn't overwrite what we set.
 osascript -e 'tell application "System Settings" to quit' 2>/dev/null || true
 
+# ---- Computer name (passed in by chezmoi; e.g. Lojze, Kosobrin) ----------
+if [[ -n "${COMPUTER_NAME:-}" && "$(scutil --get ComputerName)" != "$COMPUTER_NAME" ]]; then
+  host=$(printf '%s' "$COMPUTER_NAME" | tr '[:upper:]' '[:lower:]' | tr -cs 'a-z0-9' '-')
+  sudo scutil --set ComputerName "$COMPUTER_NAME"
+  sudo scutil --set HostName "$host"
+  sudo scutil --set LocalHostName "$host"
+fi
+
+# ---- Appearance ----------------------------------------------------------
+osascript -e 'tell application "System Events" to tell appearance preferences to set dark mode to true'
+
+# ---- Default browser (macOS shows a confirmation dialog once) ------------
+if command -v defaultbrowser >/dev/null && [[ -d /Applications/Dia.app ]] \
+   && ! defaultbrowser | grep -q '^\* dia$'; then
+  defaultbrowser dia
+fi
+
+# ---- Login items ---------------------------------------------------------
+for app in Raycast Shottr 1Password logioptionsplus OrbStack; do
+  [[ -d "/Applications/$app.app" ]] || continue
+  osascript <<EOF
+tell application "System Events"
+  if not (exists login item "$app") then
+    make login item at end with properties {path:"/Applications/$app.app", hidden:true}
+  end if
+end tell
+EOF
+done
+
 # ---- Dock ----------------------------------------------------------------
 defaults write com.apple.dock autohide -bool true
 defaults write com.apple.dock autohide-delay -float 0          # appear instantly
@@ -72,6 +101,13 @@ defaults write NSGlobalDomain NSNavPanelExpandedStateForSaveMode -bool true
 defaults write NSGlobalDomain NSNavPanelExpandedStateForSaveMode2 -bool true
 defaults write NSGlobalDomain PMPrintingExpandedStateForPrint -bool true
 defaults write NSGlobalDomain PMPrintingExpandedStateForPrint2 -bool true
+
+# ---- Apps ----------------------------------------------------------------
+defaults write com.apple.ActivityMonitor ShowCategory -int 0          # all processes
+defaults write com.apple.ActivityMonitor SortColumn -string "CPUUsage"
+defaults write com.apple.ActivityMonitor SortDirection -int 0
+defaults write com.apple.ActivityMonitor IconType -int 5              # CPU graph in Dock icon
+defaults -currentHost write com.apple.ImageCapture disableHotPlug -bool true  # Photos stays shut on plug-in
 
 # ---- Touch ID for sudo (asks for your password once) ---------------------
 if ! grep -qs pam_tid.so /etc/pam.d/sudo_local; then
