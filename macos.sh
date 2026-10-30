@@ -23,7 +23,8 @@ if command -v defaultbrowser >/dev/null && [[ -d /Applications/Dia.app ]] \
 fi
 
 # ---- Login items ---------------------------------------------------------
-for app in Raycast Shottr 1Password logioptionsplus OrbStack Stats; do
+# Ghostty stays running so its Ctrl+` quick terminal works from anywhere.
+for app in Raycast Shottr 1Password logioptionsplus OrbStack Stats Ghostty; do
   [[ -d "/Applications/$app.app" ]] || continue
   osascript <<EOF
 tell application "System Events"

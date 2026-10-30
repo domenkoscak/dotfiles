@@ -17,10 +17,14 @@ confirm-close-surface = false
 copy-on-select = clipboard
 clipboard-paste-protection = false
 
-# Drop-down terminal from anywhere: Ctrl+` (needs Accessibility permission).
+# Floating terminal from anywhere: Ctrl+` (needs Accessibility permission).
+# Only works while Ghostty runs, so macos.sh makes it a login item; closing the
+# last window keeps it running (quit-after-last-window-closed defaults to off).
 keybind = global:ctrl+grave_accent=toggle_quick_terminal
-quick-terminal-position = top
-quick-terminal-animation-duration = 0.15
+quick-terminal-position = center
+quick-terminal-size = 75%,75%
+quick-terminal-screen = mouse
+quick-terminal-animation-duration = 0
 
 # Splits
 keybind = cmd+d=new_split:right
