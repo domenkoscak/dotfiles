@@ -61,29 +61,16 @@ Takes about 30–60 minutes, mostly downloads (Xcode alone is ~10 GB).
 
 ### 2. Get the repo
 
-The repo is private, so log in to GitHub with the GitHub CLI. First the Command Line Tools
-(wait for the dialog to finish):
+Install the Command Line Tools, which include `git` (wait for the dialog to finish):
 
 ```bash
 xcode-select --install
 ```
 
-Homebrew:
+Clone (the repo is public, so no GitHub login needed):
 
 ```bash
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-```
-
-GitHub CLI and login (pick **GitHub.com → HTTPS → Login with a web browser**):
-
-```bash
-eval "$(/opt/homebrew/bin/brew shellenv)" && brew install gh && gh auth login
-```
-
-Clone:
-
-```bash
-gh repo clone domenkoscak/dotfiles ~/dotfiles
+git clone https://github.com/domenkoscak/dotfiles.git ~/dotfiles
 ```
 
 ### 3. Run the installer
