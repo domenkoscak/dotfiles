@@ -35,8 +35,9 @@
 | ❯ **Prompt** | Starship, two lines: folder, git branch and status, package version, Node, Python, AWS profile, command duration. |
 | 👻 **Terminal** | Ghostty, Tokyo Night, JetBrains Mono, translucent. Drop-down quick terminal on **Ctrl+\`**. |
 | 🔐 **Git** | Commits signed with an SSH key in 1Password. Work email by default, personal email under `~/Documents/Personal`. |
-| 📦 **Languages** | mise: Node LTS, pnpm, bun, Python, uv. Projects can pin their own versions. |
+| 📦 **Languages** | mise: Node LTS, pnpm, bun, Python. uv from Homebrew. Projects can pin their own versions. |
 | 🧑‍💻 **VS Code** | Tokyo Night, format on save, file nesting, Ghostty-style terminal, 10 extensions. |
+| 🧊 **3D / CAD** | FreeCAD with an MCP addon so Claude can model in it, `newpart` for build123d code-CAD, Bambu Studio for printing. |
 | 🍎 **macOS** | Dock, Finder, keyboard, screenshots, dark mode, Touch ID for `sudo`, login items, computer name. |
 | 🍺 **Apps** | Everything in the [`Brewfile`](Brewfile), including App Store apps. |
 
@@ -94,7 +95,7 @@ gh repo clone domenkoscak/dotfiles ~/dotfiles
 1. **Computer name**: press Enter for `Lojze`, or type another (e.g. `Kosobrin` on the server).
 2. **Homebrew** installs everything in the `Brewfile`. This is the long part.
 3. **Dotfiles** are written to `~`.
-4. **mise** installs Node, pnpm, bun, Python, uv.
+4. **mise** installs Node, pnpm, bun, Python.
 5. **VS Code** extensions install.
 6. **macOS settings** apply. It asks for your **password** once.
 
@@ -125,6 +126,8 @@ gh repo clone domenkoscak/dotfiles ~/dotfiles
 - [ ] **Ghostty**: press **Ctrl+\`** once and allow Accessibility for the quick terminal.
 - [ ] **Raycast**: set its hotkey to **Cmd+Space** (Spotlight's is already freed).
 - [ ] Sign in to Figma, Discord, Claude, Logi Options+, Stats, Bambu Studio, OrbStack.
+- [ ] **FreeCAD**: open it once. The MCP addon starts its server by itself; Claude can drive FreeCAD
+      whenever it's open (check with `claude mcp list`).
 
 🎉 Done. Welcome home.
 
@@ -205,6 +208,7 @@ gh repo clone domenkoscak/dotfiles ~/dotfiles
 | `extract file.zip` | Unpack any archive |
 | `cleanup` | Free disk space |
 | `dsclean` | Delete `.DS_Store` files here |
+| `newpart name` | New build123d 3D-print project, opened in VS Code |
 
 </td></tr>
 </table>
@@ -294,10 +298,12 @@ home/                    Everything chezmoi puts in ~ (see .chezmoiroot)
 │   ├── starship.toml             prompt
 │   ├── ghostty/config            terminal
 │   ├── git/                      git config, signing, personal override
-│   └── mise/config.toml          node, pnpm, bun, python, uv
+│   ├── build123d/part.py         starter part for `newpart`
+│   └── mise/config.toml          node, pnpm, bun, python
 ├── private_dot_ssh/              SSH config for the 1Password agent (public key only)
 ├── Library/…/Code/User/          VS Code settings
-└── run_*                         brew bundle, mise install, VS Code extensions, macos.sh
+├── Library/…/FreeCAD/            FreeCAD MCP addon auto-start setting
+└── run_*                         brew bundle, mise install, VS Code extensions, Claude MCP servers, macos.sh
 ```
 
 The `run_onchange_*` scripts rerun automatically when `Brewfile`, `vscode-extensions.txt`,

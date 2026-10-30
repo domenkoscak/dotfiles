@@ -11,3 +11,13 @@
   type = "file"
   url = "https://raw.githubusercontent.com/folke/tokyonight.nvim/main/extras/sublime/tokyonight_night.tmTheme"
   refreshPeriod = "168h"
+
+# FreeCAD MCP addon: lets Claude drive FreeCAD (the MCP server is registered by run_onchange_after_40).
+# v1-1 = FreeCAD 1.1; bump it when FreeCAD moves to a new minor version.
+["Library/Application Support/FreeCAD/v1-1/Mod/FreeCADMCP"]
+  type = "archive"
+  url = "https://github.com/neka-nat/freecad-mcp/archive/refs/heads/main.tar.gz"
+  stripComponents = 3
+  include = ["*/addon/FreeCADMCP/**"]
+  exact = true
+  refreshPeriod = "168h"

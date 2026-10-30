@@ -90,12 +90,13 @@ killport() {
 }
 
 # Free disk space: old brew downloads, unused mise versions, Xcode build
-# cache, orphaned pnpm packages.
+# cache, orphaned pnpm packages, unused uv cache.
 cleanup() {
   brew cleanup --prune=all
   mise prune --yes
   rm -rf ~/Library/Developer/Xcode/{DerivedData.noindex,DerivedData}/*(N)
   (( $+commands[pnpm] )) && pnpm store prune
+  (( $+commands[uv] )) && uv cache prune
   echo "Done. Free space: $(df -h / | awk 'NR==2 {print $4}')"
 }
 
@@ -119,6 +120,21 @@ extract() {
     *.7z)             7z x "$1" ;;
     *) echo "extract: don't know how to unpack '$1'" >&2; return 1 ;;
   esac
+}
+
+# New build123d (code CAD) project for 3D printing: `newpart spool-holder`.
+# Opens VS Code; the OCP CAD Viewer shows part.py, `uv run part.py` exports STL/STEP.
+newpart() {
+  [[ -n $1 ]] || { echo "usage: newpart <name>" >&2; return 1; }
+  [[ -e $1 ]] && { echo "newpart: '$1' already exists" >&2; return 1; }
+  mkdir -p "$1" && cd "$1" || return
+  uv init --bare --quiet --python ">=3.12,<3.15"   # build123d has no 3.15 wheels yet
+  uv python pin --quiet 3.14
+  uv add --quiet build123d ocp_vscode
+  cp ~/.config/build123d/part.py part.py
+  printf '.venv/\n*.stl\n*.step\n' > .gitignore
+  git init --quiet
+  code . part.py
 }
 
 # ---- Aliases -------------------------------------------------------------

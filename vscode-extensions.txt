@@ -9,3 +9,4 @@ formulahendry.auto-close-tag
 formulahendry.auto-rename-tag
 usernamehw.errorlens
 christian-kohler.path-intellisense
+bernhard-42.ocp-cad-viewer

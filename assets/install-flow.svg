@@ -44,7 +44,7 @@
       <text x="742" y="281" font-size="22" font-weight="700" fill="#c0caf5">Languages</text>
       <text x="698" y="322" font-family="'SF Mono', Menlo, Consolas, monospace" font-size="15" fill="#9ece6a">mise install</text>
       <text x="698" y="356" font-size="16" fill="#a9b1d6">Node LTS, pnpm, bun</text>
-      <text x="698" y="380" font-size="16" fill="#565f89">Python, uv</text>
+      <text x="698" y="380" font-size="16" fill="#565f89">Python</text>
     </g>
     <g>
       <rect x="355" y="240" width="290" height="170" rx="14" fill="#1f2335" stroke="#e0af68" stroke-opacity="0.6"/>

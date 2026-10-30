@@ -7,6 +7,7 @@ tap "infisical/get-cli"
 brew "git"
 brew "chezmoi"
 brew "mise"
+brew "uv"         # here, not in mise, so GUI apps and MCP servers find uvx
 brew "starship"
 brew "zsh-autosuggestions"
 brew "zsh-syntax-highlighting"
@@ -54,6 +55,7 @@ cask "ghostty"
 cask "visual-studio-code"
 cask "orbstack"
 cask "claude"
+cask "claude-code@latest"
 cask "figma"
 cask "thebrowsercompany-dia"
 cask "google-chrome"
@@ -62,6 +64,7 @@ cask "raycast"
 cask "shottr"
 cask "stats"          # CPU/RAM/network in the menu bar
 cask "bambu-studio"   # slicer for Bine (Bambu Lab X2D)
+cask "freecad"        # CAD; Claude drives it through the FreeCAD MCP addon
 cask "discord"
 cask "vlc"
 cask "logi-options+"

@@ -4,7 +4,6 @@ node = "lts"
 pnpm = "latest"
 bun = "latest"
 python = "latest"
-uv = "latest"
 
 [settings]
 # Respect .nvmrc / .node-version / .python-version files in projects.
