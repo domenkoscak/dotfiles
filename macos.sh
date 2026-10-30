@@ -24,12 +24,14 @@ fi
 
 # ---- Login items ---------------------------------------------------------
 # Ghostty stays running so its Ctrl+` quick terminal works from anywhere.
+# All start hidden except Slack, which opens its window.
 for app in Raycast Shottr 1Password logioptionsplus OrbStack Stats Ghostty Slack; do
   [[ -d "/Applications/$app.app" ]] || continue
+  hidden=true; [[ $app == Slack ]] && hidden=false
   osascript <<EOF
 tell application "System Events"
   if not (exists login item "$app") then
-    make login item at end with properties {path:"/Applications/$app.app", hidden:true}
+    make login item at end with properties {path:"/Applications/$app.app", hidden:$hidden}
   end if
 end tell
 EOF
