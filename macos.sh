@@ -24,7 +24,7 @@ fi
 
 # ---- Login items ---------------------------------------------------------
 # Ghostty stays running so its Ctrl+` quick terminal works from anywhere.
-for app in Raycast Shottr 1Password logioptionsplus OrbStack Stats Ghostty; do
+for app in Raycast Shottr 1Password logioptionsplus OrbStack Stats Ghostty Slack; do
   [[ -d "/Applications/$app.app" ]] || continue
   osascript <<EOF
 tell application "System Events"
