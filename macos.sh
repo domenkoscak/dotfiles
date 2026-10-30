@@ -64,6 +64,13 @@ defaults write com.apple.finder FXPreferredViewStyle -string "Nlsv"   # list vie
 defaults write com.apple.finder _FXSortFoldersFirst -bool true
 defaults write com.apple.finder NewWindowTarget -string "PfHm"        # new window = Home
 defaults write com.apple.finder NewWindowTargetPath -string "file://$HOME/"
+defaults write com.apple.finder FXDefaultSearchScope -string "SCcf"     # search current folder
+defaults write com.apple.finder FXEnableExtensionChangeWarning -bool false
+defaults write com.apple.finder ShowExternalHardDrivesOnDesktop -bool true
+defaults write com.apple.finder ShowRemovableMediaOnDesktop -bool true
+defaults write com.apple.finder ShowMountedServersOnDesktop -bool true
+defaults write com.apple.finder ShowHardDrivesOnDesktop -bool false
+chflags nohidden "$HOME/Library"
 defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true
 defaults write com.apple.desktopservices DSDontWriteUSBStores -bool true
 
@@ -108,6 +115,9 @@ defaults write com.apple.ActivityMonitor SortColumn -string "CPUUsage"
 defaults write com.apple.ActivityMonitor SortDirection -int 0
 defaults write com.apple.ActivityMonitor IconType -int 5              # CPU graph in Dock icon
 defaults -currentHost write com.apple.ImageCapture disableHotPlug -bool true  # Photos stays shut on plug-in
+
+# ---- Power: on the charger the display sleeps, the Mac doesn't ----------
+sudo pmset -c sleep 0 displaysleep 10
 
 # ---- Touch ID for sudo (asks for your password once) ---------------------
 if ! grep -qs pam_tid.so /etc/pam.d/sudo_local; then
