@@ -42,6 +42,8 @@ defaults write com.apple.dock show-recents -bool false
 defaults write com.apple.dock mru-spaces -bool false          # keep Spaces in order
 defaults write com.apple.dock showhidden -bool true           # dim icons of Cmd+H'd apps
 defaults write com.apple.dock minimize-to-application -bool true
+defaults write com.apple.dock scroll-to-open -bool true       # scroll up on an icon = its windows
+defaults write com.apple.dock enterMissionControlByTopWindowDrag -bool false
 
 # Dock apps, left to right.
 if command -v dockutil >/dev/null; then
@@ -101,6 +103,7 @@ for domain in com.apple.AppleMultitouchTrackpad com.apple.driver.AppleBluetoothM
   defaults write "$domain" TrackpadFourFingerVertSwipeGesture -int 2
 done
 defaults write NSGlobalDomain NSWindowShouldDragOnGesture -bool true   # Ctrl+Cmd+drag moves windows
+defaults write NSGlobalDomain NSToolbarTitleViewRolloverDelay -float 0 # title-bar icon shows at once
 
 # ---- Animations & desktop ------------------------------------------------
 defaults write NSGlobalDomain NSAutomaticWindowAnimationsEnabled -bool false  # no zoom on new windows
@@ -154,6 +157,7 @@ defaults write com.apple.screencapture location -string "$HOME/Screenshots"
 defaults write com.apple.screencapture type -string "png"
 defaults write com.apple.screencapture disable-shadow -bool true
 defaults write com.apple.screencapture show-thumbnail -bool false   # save right away, no preview
+defaults write com.apple.screencapture name -string "${COMPUTER_NAME:-$(scutil --get ComputerName)}"  # "Lojze 2026-10-30 at…"
 
 # ---- Apply ---------------------------------------------------------------
 killall Dock Finder SystemUIServer ControlCenter 2>/dev/null || true
