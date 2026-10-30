@@ -1,0 +1,26 @@
+# ~/.zprofile — login shell: PATH and environment.
+
+# Homebrew (also sets MANPATH/INFOPATH).
+if [[ -x /opt/homebrew/bin/brew ]]; then
+  eval "$(/opt/homebrew/bin/brew shellenv)"
+fi
+
+# User binaries (official installers drop things here).
+export PATH="$HOME/.local/bin:$PATH"
+
+# Keg-only brews that need to be on PATH explicitly.
+export PATH="$HOMEBREW_PREFIX/opt/libpq/bin:$PATH"   # psql, pg_dump
+
+# Java 21 (Android builds).
+export JAVA_HOME="$HOMEBREW_PREFIX/opt/openjdk@21/libexec/openjdk.jdk/Contents/Home"
+export PATH="$JAVA_HOME/bin:$PATH"
+
+# Android SDK.
+export ANDROID_HOME="$HOMEBREW_PREFIX/share/android-commandlinetools"
+export PATH="$ANDROID_HOME/platform-tools:$ANDROID_HOME/emulator:$PATH"
+
+export EDITOR="code --wait"
+export VISUAL="$EDITOR"
+
+# OrbStack CLI integration (docker, orb).
+source ~/.orbstack/shell/init.zsh 2>/dev/null || :

@@ -1,0 +1,8 @@
+# All SSH keys live in 1Password; its agent serves them.
+Host *
+	IdentityAgent "~/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock"
+
+# Pin GitHub to the personal key so the agent doesn't offer every key.
+Host github.com
+	IdentityFile ~/.ssh/id_personal.pub
+	IdentitiesOnly yes

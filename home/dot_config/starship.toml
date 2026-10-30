@@ -1,0 +1,66 @@
+"$schema" = "https://starship.rs/config-schema.json"
+
+palette = "tokyonight"
+add_newline = true
+
+# Two lines: context on top, type below. Language modules only show up
+# inside projects that use them.
+format = """
+$directory\
+$git_branch\
+$git_state\
+$git_status\
+$nodejs\
+$python\
+$aws\
+$cmd_duration\
+$line_break\
+$character"""
+
+[directory]
+style = "bold blue"
+truncation_length = 3
+truncate_to_repo = true
+
+[git_branch]
+symbol = " "
+style = "purple"
+format = "[$symbol$branch]($style) "
+
+[git_status]
+style = "orange"
+format = "([$all_status$ahead_behind]($style) )"
+
+[nodejs]
+symbol = " "
+style = "green"
+format = "[$symbol$version]($style) "
+
+[python]
+symbol = " "
+style = "yellow"
+format = "[$symbol$version( \\($virtualenv\\))]($style) "
+
+[aws]
+symbol = " "
+style = "orange"
+format = "[$symbol$profile]($style) "
+
+[cmd_duration]
+min_time = 2000
+style = "comment"
+format = "[took $duration]($style)"
+
+[character]
+success_symbol = "[❯](bold cyan)"
+error_symbol = "[❯](bold red)"
+
+[palettes.tokyonight]
+blue = "#7aa2f7"
+cyan = "#7dcfff"
+green = "#9ece6a"
+yellow = "#e0af68"
+orange = "#ff9e64"
+red = "#f7768e"
+purple = "#bb9af7"
+comment = "#565f89"

@@ -1,0 +1,11 @@
+# Global tool versions. Projects can pin their own in mise.toml / .nvmrc / .python-version.
+[tools]
+node = "lts"
+pnpm = "latest"
+bun = "latest"
+python = "latest"
+uv = "latest"
+
+[settings]
+# Respect .nvmrc / .node-version / .python-version files in projects.
+idiomatic_version_file_enable_tools = ["node", "python"]

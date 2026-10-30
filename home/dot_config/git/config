@@ -1,0 +1,22 @@
+[user]
+	name = Domen Koščak
+	email = domen.koscak@zerodays.dev
+	# Public half of the 1Password SSH key; 1Password does the signing.
+	signingkey = key::ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICiUCIQyBEYI1hIVTKsazhBQX2iLZl50qaTL7HPwfEZh
+
+# Repos under ~/Documents/Personal use the personal email.
+[includeIf "gitdir:~/Documents/Personal/"]
+	path = ~/.config/git/config-personal
+
+[commit]
+	gpgsign = true
+[tag]
+	gpgsign = true
+[gpg]
+	format = ssh
+[gpg "ssh"]
+	program = /Applications/1Password.app/Contents/MacOS/op-ssh-sign
+	allowedSignersFile = ~/.config/git/allowed_signers
+
+[push]
+	autoSetupRemote = true

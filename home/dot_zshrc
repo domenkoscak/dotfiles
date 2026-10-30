@@ -1,0 +1,74 @@
+# ~/.zshrc — interactive shell. PATH/env live in ~/.zprofile.
+
+export LANG="en_US.UTF-8"
+
+# ---- Tokyo Night everywhere ---------------------------------------------
+export BAT_THEME="tokyonight_night"
+export MANPAGER="sh -c 'col -bx | bat --language man --style=plain'"
+export MANROFFOPT="-c"
+
+# ---- History -------------------------------------------------------------
+HISTFILE="$HOME/.zsh_history"
+HISTSIZE=50000
+SAVEHIST=50000
+setopt SHARE_HISTORY HIST_IGNORE_ALL_DUPS HIST_IGNORE_SPACE HIST_REDUCE_BLANKS
+
+setopt INTERACTIVE_COMMENTS NO_BEEP
+
+# ---- Completion ----------------------------------------------------------
+fpath=("$HOMEBREW_PREFIX/share/zsh/site-functions" $fpath)
+autoload -Uz compinit && compinit
+zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'   # case-insensitive
+zstyle ':completion:*' menu no                              # fzf-tab draws the menu
+
+# fzf-tab (downloaded by chezmoi, see .chezmoiexternal.toml).
+# Must load after compinit, before autosuggestions/fzf widgets.
+if [[ -f ~/.config/zsh/plugins/fzf-tab/fzf-tab.plugin.zsh ]]; then
+  source ~/.config/zsh/plugins/fzf-tab/fzf-tab.plugin.zsh
+  zstyle ':fzf-tab:complete:(cd|z|__zoxide_z):*' fzf-preview \
+    'eza -1 --color=always --icons --group-directories-first $realpath'
+fi
+
+# ---- Plugins (from Homebrew) ---------------------------------------------
+source "$HOMEBREW_PREFIX/share/zsh-autosuggestions/zsh-autosuggestions.zsh"
+
+# ---- fzf: Ctrl-R history, Ctrl-T files, Alt-C dirs -----------------------
+export FZF_DEFAULT_COMMAND="fd --hidden --strip-cwd-prefix --exclude .git"
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+export FZF_ALT_C_COMMAND="fd --type d --hidden --strip-cwd-prefix --exclude .git"
+export FZF_DEFAULT_OPTS="--height=50% --layout=reverse --border=rounded --info=inline \
+--color=bg+:#283457,bg:#16161e,border:#27a1b9,fg:#c0caf5,gutter:#16161e \
+--color=header:#ff9e64,hl+:#2ac3de,hl:#2ac3de,info:#545c7e,marker:#ff007c \
+--color=pointer:#ff007c,prompt:#2ac3de,query:#c0caf5:regular,scrollbar:#27a1b9 \
+--color=separator:#ff9e64,spinner:#ff007c"
+source <(fzf --zsh)
+
+# ---- Tools ---------------------------------------------------------------
+eval "$(mise activate zsh)"     # node, python, pnpm, bun, uv
+eval "$(zoxide init zsh)"       # `z foo` jumps to a frequent dir
+eval "$(starship init zsh)"
+
+# ---- macOS-style keys (Ghostty sends these, see ghostty/config) ----------
+#   Option+←/→ word, Cmd+←/→ line start/end, Option/Cmd+Backspace delete
+bindkey '^[b' backward-word
+bindkey '^[f' forward-word
+bindkey '^A'  beginning-of-line
+bindkey '^E'  end-of-line
+bindkey '^W'  backward-kill-word
+bindkey '^U'  backward-kill-line
+
+# ---- Aliases -------------------------------------------------------------
+alias ls="eza --icons --group-directories-first"
+alias ll="eza --icons --group-directories-first -l"
+alias la="eza --icons --group-directories-first -la"
+alias lt="eza --icons --tree --level=2"
+alias cat="bat"
+alias cd="z"
+
+# Dotfiles
+alias dotfiles="cd ~/dotfiles"
+# Pull the repo + apply, then update brew, mise tools and App Store apps.
+alias upgrade="chezmoi update && brew update && brew upgrade && mise upgrade && mas upgrade && brew cleanup"
+
+# ---- Syntax highlighting (must be last) ----------------------------------
+source "$HOMEBREW_PREFIX/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"

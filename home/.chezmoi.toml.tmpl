@@ -1,0 +1,5 @@
+# Remember where the repo lives (~/dotfiles) so `chezmoi` commands find it.
+sourceDir = {{ .chezmoi.workingTree | quote }}
+
+[diff]
+  pager = "less -R"

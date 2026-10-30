@@ -1,0 +1,11 @@
+# VS Code extensions, one ID per line. Installed by `chezmoi apply` when this file changes.
+enkia.tokyo-night
+atommaterial.a-file-icon-vscode
+dbaeumer.vscode-eslint
+esbenp.prettier-vscode
+biomejs.biome
+bradlc.vscode-tailwindcss
+formulahendry.auto-close-tag
+formulahendry.auto-rename-tag
+usernamehw.errorlens
+christian-kohler.path-intellisense

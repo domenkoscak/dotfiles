@@ -1,0 +1,7 @@
+#!/bin/bash
+# Extension list hash: {{ include (joinPath .chezmoi.workingTree "vscode-extensions.txt") | sha256sum }}
+set -euo pipefail
+code="/Applications/Visual Studio Code.app/Contents/Resources/app/bin/code"
+[[ -x "$code" ]] || { echo "VS Code not installed, skipping extensions"; exit 0; }
+grep -v '^\s*#' {{ joinPath .chezmoi.workingTree "vscode-extensions.txt" | quote }} | grep -v '^\s*$' |
+  while read -r ext; do "$code" --install-extension "$ext" --force; done
