@@ -89,6 +89,23 @@ killport() {
   [[ -n $pids ]] && kill ${=pids} && echo "Killed $pids" || echo "Nothing on :$1"
 }
 
+# Free disk space: old brew downloads, unused mise versions, Xcode build
+# cache, orphaned pnpm packages.
+cleanup() {
+  brew cleanup --prune=all
+  mise prune --yes
+  rm -rf ~/Library/Developer/Xcode/{DerivedData.noindex,DerivedData}/*(N)
+  (( $+commands[pnpm] )) && pnpm store prune
+  echo "Done. Free space: $(df -h / | awk 'NR==2 {print $4}')"
+}
+
+# Delete .DS_Store files below the current folder.
+dsclean() {
+  local files=(**/.DS_Store(.ND))
+  (( ${#files} )) && rm -- $files
+  echo "Removed ${#files} .DS_Store file(s)"
+}
+
 # Unpack any archive: `extract file.tar.gz`
 extract() {
   case $1 in

@@ -116,6 +116,10 @@ defaults write com.apple.ActivityMonitor SortDirection -int 0
 defaults write com.apple.ActivityMonitor IconType -int 5              # CPU graph in Dock icon
 defaults -currentHost write com.apple.ImageCapture disableHotPlug -bool true  # Photos stays shut on plug-in
 
+# ---- Keep Xcode build junk out of Spotlight ------------------------------
+# Spotlight skips any folder ending in .noindex.
+defaults write com.apple.dt.Xcode IDECustomDerivedDataLocation -string "$HOME/Library/Developer/Xcode/DerivedData.noindex"
+
 # ---- Power: on the charger the display sleeps, the Mac doesn't ----------
 sudo pmset -c sleep 0 displaysleep 10
 
