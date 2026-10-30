@@ -10,6 +10,7 @@ $directory\
 $git_branch\
 $git_state\
 $git_status\
+$package\
 $nodejs\
 $python\
 $aws\
@@ -30,6 +31,11 @@ format = "[$symbol$branch]($style) "
 [git_status]
 style = "orange"
 format = "([$all_status$ahead_behind]($style) )"
+
+[package]
+symbol = "󰏗 "
+style = "cyan"
+format = "[$symbol$version]($style) "
 
 [nodejs]
 symbol = " "

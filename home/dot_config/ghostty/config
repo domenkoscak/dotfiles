@@ -3,6 +3,9 @@ theme = TokyoNight Night
 font-family = "JetBrainsMono Nerd Font Mono"
 font-size = 14
 
+background-opacity = 0.9
+background-blur = true
+
 window-padding-x = 8
 window-padding-y = 4
 window-save-state = always
@@ -10,6 +13,22 @@ macos-titlebar-style = transparent
 
 shell-integration = zsh
 confirm-close-surface = false
+
+copy-on-select = clipboard
+clipboard-paste-protection = false
+
+# Drop-down terminal from anywhere: Ctrl+` (needs Accessibility permission).
+keybind = global:ctrl+grave_accent=toggle_quick_terminal
+quick-terminal-position = top
+quick-terminal-animation-duration = 0.15
+
+# Splits
+keybind = cmd+d=new_split:right
+keybind = cmd+shift+d=new_split:down
+keybind = cmd+[=goto_split:previous
+keybind = cmd+]=goto_split:next
+keybind = cmd+shift+enter=toggle_split_zoom
+keybind = cmd+ctrl+equal=equalize_splits
 
 # macOS-native text navigation (paired with bindkeys in ~/.zshrc):
 #   Option + Left/Right  -> jump by word          (ESC b / ESC f)

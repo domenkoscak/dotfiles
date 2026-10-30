@@ -50,6 +50,34 @@ defaults write NSGlobalDomain NSAutomaticDashSubstitutionEnabled -bool false
 defaults write NSGlobalDomain NSAutomaticPeriodSubstitutionEnabled -bool false
 defaults write NSGlobalDomain AppleKeyboardUIMode -int 2               # Tab through all controls
 
+# ---- Animations & desktop ------------------------------------------------
+defaults write NSGlobalDomain NSAutomaticWindowAnimationsEnabled -bool false  # no zoom on new windows
+defaults write NSGlobalDomain NSWindowResizeTime -float 0.001
+defaults write com.apple.dock expose-animation-duration -float 0.1            # Mission Control
+defaults write com.apple.dock autohide-time-modifier -float 0.3               # Dock slide
+defaults write com.apple.WindowManager EnableStandardClickToShowDesktop -bool false
+
+# ---- Menu bar ------------------------------------------------------------
+defaults -currentHost write com.apple.controlcenter BatteryShowPercentage -bool true
+defaults -currentHost write com.apple.Spotlight MenuItemHidden -int 1
+
+# ---- Free Cmd+Space for Raycast (set the hotkey in Raycast itself) -------
+defaults write com.apple.symbolichotkeys AppleSymbolicHotKeys -dict-add 64 \
+  "<dict><key>enabled</key><false/><key>value</key><dict><key>parameters</key><array><integer>32</integer><integer>49</integer><integer>1048576</integer></array><key>type</key><string>standard</string></dict></dict>"
+/System/Library/PrivateFrameworks/SystemAdministration.framework/Resources/activateSettings -u 2>/dev/null || true
+
+# ---- Save dialogs --------------------------------------------------------
+defaults write NSGlobalDomain NSDocumentSaveNewDocumentsToCloud -bool false   # save to disk
+defaults write NSGlobalDomain NSNavPanelExpandedStateForSaveMode -bool true
+defaults write NSGlobalDomain NSNavPanelExpandedStateForSaveMode2 -bool true
+defaults write NSGlobalDomain PMPrintingExpandedStateForPrint -bool true
+defaults write NSGlobalDomain PMPrintingExpandedStateForPrint2 -bool true
+
+# ---- Touch ID for sudo (asks for your password once) ---------------------
+if ! grep -qs pam_tid.so /etc/pam.d/sudo_local; then
+  echo "auth       sufficient     pam_tid.so" | sudo tee /etc/pam.d/sudo_local >/dev/null
+fi
+
 # ---- Screenshots ---------------------------------------------------------
 mkdir -p "$HOME/Screenshots"
 defaults write com.apple.screencapture location -string "$HOME/Screenshots"
@@ -57,5 +85,5 @@ defaults write com.apple.screencapture type -string "png"
 defaults write com.apple.screencapture disable-shadow -bool true
 
 # ---- Apply ---------------------------------------------------------------
-killall Dock Finder SystemUIServer 2>/dev/null || true
+killall Dock Finder SystemUIServer ControlCenter 2>/dev/null || true
 echo "macOS settings applied. Key repeat changes need a log out / log in."

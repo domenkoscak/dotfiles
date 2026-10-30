@@ -29,6 +29,9 @@ brew "infisical/get-cli/infisical"
 brew "cloudflared"
 brew "ffmpeg"
 brew "mole"       # Mac cleaner
+brew "btop"       # process monitor
+brew "dust"       # disk usage by folder
+brew "duf"        # disk free overview
 brew "libpq"      # psql (keg-only, put on PATH in .zprofile)
 
 # ---- iOS -----------------------------------------------------------------

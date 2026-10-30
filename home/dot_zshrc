@@ -13,11 +13,13 @@ HISTSIZE=50000
 SAVEHIST=50000
 setopt SHARE_HISTORY HIST_IGNORE_ALL_DUPS HIST_IGNORE_SPACE HIST_REDUCE_BLANKS
 
-setopt INTERACTIVE_COMMENTS NO_BEEP
+setopt INTERACTIVE_COMMENTS NO_BEEP EXTENDED_GLOB
 
 # ---- Completion ----------------------------------------------------------
 fpath=("$HOMEBREW_PREFIX/share/zsh/site-functions" $fpath)
-autoload -Uz compinit && compinit
+# Full rebuild + security check at most once a day; otherwise load the cache.
+autoload -Uz compinit
+if [[ -n ~/.zcompdump(#qN.mh-24) ]]; then compinit -C; else compinit; fi
 zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'   # case-insensitive
 zstyle ':completion:*' menu no                              # fzf-tab draws the menu
 
@@ -41,12 +43,22 @@ export FZF_DEFAULT_OPTS="--height=50% --layout=reverse --border=rounded --info=i
 --color=header:#ff9e64,hl+:#2ac3de,hl:#2ac3de,info:#545c7e,marker:#ff007c \
 --color=pointer:#ff007c,prompt:#2ac3de,query:#c0caf5:regular,scrollbar:#27a1b9 \
 --color=separator:#ff9e64,spinner:#ff007c"
-source <(fzf --zsh)
-
 # ---- Tools ---------------------------------------------------------------
-eval "$(mise activate zsh)"     # node, python, pnpm, bun, uv
-eval "$(zoxide init zsh)"       # `z foo` jumps to a frequent dir
-eval "$(starship init zsh)"
+# Cache each tool's init script; regenerate only when the tool is upgraded.
+_cached_init() {
+  local name=$1; shift
+  (( $+commands[$1] )) || return 0   # tool not installed (yet)
+  local cache=~/.cache/zsh/$name.zsh bin=${commands[$1]}
+  if [[ ! -s $cache || $bin -nt $cache ]]; then
+    mkdir -p ${cache:h} && "$@" >| $cache
+  fi
+  source $cache
+}
+_cached_init fzf      fzf --zsh
+_cached_init mise     mise activate zsh       # node, python, pnpm, bun, uv
+_cached_init zoxide   zoxide init zsh         # `z foo` jumps to a frequent dir
+_cached_init starship starship init zsh
+unfunction _cached_init
 
 # ---- macOS-style keys (Ghostty sends these, see ghostty/config) ----------
 #   Option+←/→ word, Cmd+←/→ line start/end, Option/Cmd+Backspace delete
@@ -56,6 +68,41 @@ bindkey '^A'  beginning-of-line
 bindkey '^E'  end-of-line
 bindkey '^W'  backward-kill-word
 bindkey '^U'  backward-kill-line
+
+# Up/Down walk only history entries starting with what's typed (`git ` + Up).
+autoload -Uz up-line-or-beginning-search down-line-or-beginning-search
+zle -N up-line-or-beginning-search
+zle -N down-line-or-beginning-search
+bindkey '^[[A' up-line-or-beginning-search
+bindkey '^[[B' down-line-or-beginning-search
+
+# ---- Functions -----------------------------------------------------------
+# Make a directory and cd into it.
+mkcd() { mkdir -p "$1" && cd "$1"; }
+
+# What's listening on a port: `port 3000`
+port() { lsof -nP -iTCP:"$1" -sTCP:LISTEN; }
+
+# Kill whatever is listening on a port: `killport 3000`
+killport() {
+  local pids=$(lsof -t -iTCP:"$1" -sTCP:LISTEN)
+  [[ -n $pids ]] && kill ${=pids} && echo "Killed $pids" || echo "Nothing on :$1"
+}
+
+# Unpack any archive: `extract file.tar.gz`
+extract() {
+  case $1 in
+    *.tar.gz|*.tgz)   tar xzf "$1" ;;
+    *.tar.bz2|*.tbz2) tar xjf "$1" ;;
+    *.tar.xz|*.txz)   tar xJf "$1" ;;
+    *.tar)            tar xf "$1" ;;
+    *.zip)            unzip "$1" ;;
+    *.gz)             gunzip "$1" ;;
+    *.bz2)            bunzip2 "$1" ;;
+    *.7z)             7z x "$1" ;;
+    *) echo "extract: don't know how to unpack '$1'" >&2; return 1 ;;
+  esac
+}
 
 # ---- Aliases -------------------------------------------------------------
 alias ls="eza --icons --group-directories-first"
