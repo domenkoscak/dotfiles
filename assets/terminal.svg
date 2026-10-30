@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 560" width="1000" height="560" role="img" aria-label="Ghostty with the Starship prompt, eza listing and port helpers">
+  <defs>
+    <linearGradient id="win" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#1a1b26"/>
+      <stop offset="1" stop-color="#16161e"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Window -->
+  <rect x="20" y="20" width="960" height="520" rx="14" fill="url(#win)" stroke="#292e42" stroke-width="1.5"/>
+  <circle cx="46" cy="44" r="7" fill="#ff5f57"/>
+  <circle cx="70" cy="44" r="7" fill="#febc2e"/>
+  <circle cx="94" cy="44" r="7" fill="#28c840"/>
+  <text x="500" y="49" text-anchor="middle" font-family="-apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="14" fill="#565f89">Lojze — ~/Developer/my-app</text>
+  <line x1="21" y1="68" x2="979" y2="68" stroke="#292e42"/>
+
+  <g font-family="'SF Mono', Menlo, Consolas, monospace" font-size="16" xml:space="preserve">
+    <!-- prompt 1 -->
+    <text x="48" y="100"><tspan fill="#7aa2f7" font-weight="700">my-app</tspan> <tspan fill="#bb9af7">main</tspan> <tspan fill="#ff9e64">!2</tspan> <tspan fill="#7dcfff">pkg v1.4.0</tspan> <tspan fill="#9ece6a">node v22.12.0</tspan></text>
+    <text x="48" y="126"><tspan fill="#7dcfff" font-weight="700">❯</tspan><tspan fill="#c0caf5"> ll</tspan></text>
+    <text x="48" y="152"><tspan fill="#7aa2f7">d</tspan><tspan fill="#e0af68">r</tspan><tspan fill="#f7768e">w</tspan><tspan fill="#9ece6a">x</tspan><tspan fill="#565f89">r-xr-x     - domen 30 Oct 09:10 </tspan><tspan fill="#7aa2f7" font-weight="700">public</tspan></text>
+    <text x="48" y="178"><tspan fill="#7aa2f7">d</tspan><tspan fill="#e0af68">r</tspan><tspan fill="#f7768e">w</tspan><tspan fill="#9ece6a">x</tspan><tspan fill="#565f89">r-xr-x     - domen 30 Oct 09:12 </tspan><tspan fill="#7aa2f7" font-weight="700">src</tspan></text>
+    <text x="48" y="204"><tspan fill="#565f89">.</tspan><tspan fill="#e0af68">r</tspan><tspan fill="#f7768e">w</tspan><tspan fill="#565f89">-r--r--  1.2k domen 30 Oct 09:12 </tspan><tspan fill="#c0caf5">package.json</tspan></text>
+    <text x="48" y="230"><tspan fill="#565f89">.</tspan><tspan fill="#e0af68">r</tspan><tspan fill="#f7768e">w</tspan><tspan fill="#565f89">-r--r--  4.1k domen 28 Oct 11:02 </tspan><tspan fill="#c0caf5">README.md</tspan></text>
+    <text x="48" y="256"><tspan fill="#565f89">.</tspan><tspan fill="#e0af68">r</tspan><tspan fill="#f7768e">w</tspan><tspan fill="#565f89">-r--r--   842 domen 29 Oct 18:40 </tspan><tspan fill="#c0caf5">tsconfig.json</tspan></text>
+
+    <!-- prompt 2 -->
+    <text x="48" y="296"><tspan fill="#7aa2f7" font-weight="700">my-app</tspan> <tspan fill="#bb9af7">main</tspan> <tspan fill="#ff9e64">!2</tspan> <tspan fill="#7dcfff">pkg v1.4.0</tspan> <tspan fill="#9ece6a">node v22.12.0</tspan></text>
+    <text x="48" y="322"><tspan fill="#7dcfff" font-weight="700">❯</tspan><tspan fill="#c0caf5"> port 3000</tspan></text>
+    <text x="48" y="348" fill="#565f89">COMMAND   PID  USER   FD   TYPE  NODE NAME</text>
+    <text x="48" y="374" fill="#c0caf5">node    48213 domen   23u  IPv6  TCP  *:3000 (LISTEN)</text>
+
+    <!-- prompt 3 -->
+    <text x="48" y="414"><tspan fill="#7aa2f7" font-weight="700">my-app</tspan> <tspan fill="#bb9af7">main</tspan> <tspan fill="#ff9e64">!2</tspan> <tspan fill="#7dcfff">pkg v1.4.0</tspan> <tspan fill="#9ece6a">node v22.12.0</tspan></text>
+    <text x="48" y="440"><tspan fill="#7dcfff" font-weight="700">❯</tspan><tspan fill="#c0caf5"> killport 3000</tspan></text>
+    <text x="48" y="466" fill="#9ece6a">Killed 48213</text>
+
+    <!-- prompt 4 -->
+    <text x="48" y="506"><tspan fill="#7aa2f7" font-weight="700">my-app</tspan> <tspan fill="#bb9af7">main</tspan> <tspan fill="#ff9e64">!2</tspan> <tspan fill="#7dcfff">pkg v1.4.0</tspan> <tspan fill="#9ece6a">node v22.12.0</tspan> <tspan fill="#565f89">took 3s</tspan></text>
+  </g>
+  <text x="48" y="530" font-family="'SF Mono', Menlo, Consolas, monospace" font-size="16" fill="#7dcfff" font-weight="700">❯</text>
+  <rect x="66" y="516" width="10" height="18" fill="#c0caf5" opacity="0.85"/>
+</svg>

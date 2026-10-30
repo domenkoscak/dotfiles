@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1020 300" width="1020" height="300" role="img" aria-label="How changes flow between GitHub, ~/dotfiles and your home folder">
+  <defs>
+    <marker id="a" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#7aa2f7"/>
+    </marker>
+    <marker id="b" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#565f89"/>
+    </marker>
+  </defs>
+  <rect width="1020" height="300" rx="20" fill="#1a1b26"/>
+
+  <g font-family="-apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" text-anchor="middle">
+    <!-- GitHub -->
+    <rect x="30" y="70" width="220" height="160" rx="14" fill="#1f2335" stroke="#414868"/>
+    <text x="140" y="120" font-size="24" font-weight="700" fill="#c0caf5">GitHub</text>
+    <text x="140" y="152" font-family="'SF Mono', Menlo, Consolas, monospace" font-size="13" fill="#bb9af7">domenkoscak/dotfiles</text>
+    <text x="140" y="190" font-size="15" fill="#565f89">backup + sync</text>
+    <text x="140" y="210" font-size="15" fill="#565f89">between Macs</text>
+
+    <!-- Repo -->
+    <rect x="400" y="70" width="220" height="160" rx="14" fill="#1f2335" stroke="#7aa2f7" stroke-width="2"/>
+    <text x="510" y="120" font-family="'SF Mono', Menlo, Consolas, monospace" font-size="24" font-weight="700" fill="#c0caf5"><tspan fill="#7aa2f7">~/</tspan>dotfiles</text>
+    <text x="510" y="152" font-size="15" fill="#7aa2f7">source of truth</text>
+    <text x="510" y="190" font-size="15" fill="#565f89">edit here,</text>
+    <text x="510" y="210" font-size="15" fill="#565f89">commit here</text>
+
+    <!-- Home -->
+    <rect x="770" y="70" width="220" height="160" rx="14" fill="#1f2335" stroke="#414868"/>
+    <text x="880" y="120" font-family="'SF Mono', Menlo, Consolas, monospace" font-size="24" font-weight="700" fill="#c0caf5">~</text>
+    <text x="880" y="152" font-size="15" fill="#9ece6a">your home folder</text>
+    <text x="880" y="190" font-size="15" fill="#565f89">what apps and</text>
+    <text x="880" y="210" font-size="15" fill="#565f89">the shell read</text>
+  </g>
+
+  <!-- GitHub <-> repo -->
+  <g fill="none" stroke-width="2">
+    <line x1="398" y1="120" x2="254" y2="120" stroke="#7aa2f7" marker-end="url(#a)"/>
+    <line x1="252" y1="180" x2="396" y2="180" stroke="#7aa2f7" marker-end="url(#a)"/>
+    <line x1="622" y1="120" x2="766" y2="120" stroke="#7aa2f7" marker-end="url(#a)"/>
+    <line x1="768" y1="180" x2="624" y2="180" stroke="#565f89" stroke-dasharray="6 5" marker-end="url(#b)"/>
+  </g>
+  <g font-family="'SF Mono', Menlo, Consolas, monospace" font-size="14" text-anchor="middle">
+    <text x="325" y="108" fill="#c0caf5">git push</text>
+    <text x="325" y="206" fill="#c0caf5">upgrade</text>
+    <text x="695" y="108" fill="#c0caf5">chezmoi apply</text>
+    <text x="695" y="206" fill="#565f89">chezmoi re-add</text>
+  </g>
+  <g font-family="-apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="13" text-anchor="middle" fill="#565f89">
+    <text x="325" y="40">on another Mac: <tspan fill="#a9b1d6">upgrade</tspan> pulls + applies</text>
+    <text x="695" y="268">edited a file in ~ directly? <tspan fill="#a9b1d6">re-add</tspan> copies it back</text>
+  </g>
+</svg>

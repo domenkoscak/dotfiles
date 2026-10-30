@@ -1,0 +1,77 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 440" width="1000" height="440" role="img" aria-label="What install.sh does: computer name, Homebrew, dotfiles, languages, VS Code, macOS settings">
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#565f89"/>
+    </marker>
+  </defs>
+  <rect width="1000" height="440" rx="20" fill="#1a1b26"/>
+
+  <g font-family="-apple-system, 'Segoe UI', Helvetica, Arial, sans-serif">
+    <!-- Row 1, left to right -->
+    <g>
+      <rect x="30" y="30" width="290" height="170" rx="14" fill="#1f2335" stroke="#bb9af7" stroke-opacity="0.6"/>
+      <circle cx="64" cy="64" r="16" fill="#bb9af7"/>
+      <text x="64" y="70" text-anchor="middle" font-size="16" font-weight="700" fill="#1a1b26">1</text>
+      <text x="92" y="71" font-size="22" font-weight="700" fill="#c0caf5">Computer name</text>
+      <text x="48" y="112" font-family="'SF Mono', Menlo, Consolas, monospace" font-size="15" fill="#bb9af7">chezmoi init</text>
+      <text x="48" y="146" font-size="16" fill="#a9b1d6">Asked once per Mac.</text>
+      <text x="48" y="170" font-size="16" fill="#565f89">Enter = Lojze</text>
+    </g>
+    <g>
+      <rect x="355" y="30" width="290" height="170" rx="14" fill="#1f2335" stroke="#7aa2f7" stroke-opacity="0.6"/>
+      <circle cx="389" cy="64" r="16" fill="#7aa2f7"/>
+      <text x="389" y="70" text-anchor="middle" font-size="16" font-weight="700" fill="#1a1b26">2</text>
+      <text x="417" y="71" font-size="22" font-weight="700" fill="#c0caf5">Homebrew</text>
+      <text x="373" y="112" font-family="'SF Mono', Menlo, Consolas, monospace" font-size="15" fill="#7aa2f7">Brewfile</text>
+      <text x="373" y="146" font-size="16" fill="#a9b1d6">Apps, CLI tools, fonts</text>
+      <text x="373" y="170" font-size="16" fill="#565f89">and App Store apps</text>
+    </g>
+    <g>
+      <rect x="680" y="30" width="290" height="170" rx="14" fill="#1f2335" stroke="#7dcfff" stroke-opacity="0.6"/>
+      <circle cx="714" cy="64" r="16" fill="#7dcfff"/>
+      <text x="714" y="70" text-anchor="middle" font-size="16" font-weight="700" fill="#1a1b26">3</text>
+      <text x="742" y="71" font-size="22" font-weight="700" fill="#c0caf5">Dotfiles</text>
+      <text x="698" y="112" font-family="'SF Mono', Menlo, Consolas, monospace" font-size="15" fill="#7dcfff">home/ → ~</text>
+      <text x="698" y="146" font-size="16" fill="#a9b1d6">zsh, Starship, Ghostty</text>
+      <text x="698" y="170" font-size="16" fill="#565f89">git, SSH, VS Code</text>
+    </g>
+
+    <!-- Row 2, right to left -->
+    <g>
+      <rect x="680" y="240" width="290" height="170" rx="14" fill="#1f2335" stroke="#9ece6a" stroke-opacity="0.6"/>
+      <circle cx="714" cy="274" r="16" fill="#9ece6a"/>
+      <text x="714" y="280" text-anchor="middle" font-size="16" font-weight="700" fill="#1a1b26">4</text>
+      <text x="742" y="281" font-size="22" font-weight="700" fill="#c0caf5">Languages</text>
+      <text x="698" y="322" font-family="'SF Mono', Menlo, Consolas, monospace" font-size="15" fill="#9ece6a">mise install</text>
+      <text x="698" y="356" font-size="16" fill="#a9b1d6">Node LTS, pnpm, bun</text>
+      <text x="698" y="380" font-size="16" fill="#565f89">Python, uv</text>
+    </g>
+    <g>
+      <rect x="355" y="240" width="290" height="170" rx="14" fill="#1f2335" stroke="#e0af68" stroke-opacity="0.6"/>
+      <circle cx="389" cy="274" r="16" fill="#e0af68"/>
+      <text x="389" y="280" text-anchor="middle" font-size="16" font-weight="700" fill="#1a1b26">5</text>
+      <text x="417" y="281" font-size="22" font-weight="700" fill="#c0caf5">VS Code</text>
+      <text x="373" y="322" font-family="'SF Mono', Menlo, Consolas, monospace" font-size="15" fill="#e0af68">vscode-extensions.txt</text>
+      <text x="373" y="356" font-size="16" fill="#a9b1d6">Tokyo Night, linters</text>
+      <text x="373" y="380" font-size="16" fill="#565f89">and formatters</text>
+    </g>
+    <g>
+      <rect x="30" y="240" width="290" height="170" rx="14" fill="#1f2335" stroke="#ff9e64" stroke-opacity="0.6"/>
+      <circle cx="64" cy="274" r="16" fill="#ff9e64"/>
+      <text x="64" y="280" text-anchor="middle" font-size="16" font-weight="700" fill="#1a1b26">6</text>
+      <text x="92" y="281" font-size="22" font-weight="700" fill="#c0caf5">macOS</text>
+      <text x="48" y="322" font-family="'SF Mono', Menlo, Consolas, monospace" font-size="15" fill="#ff9e64">macos.sh</text>
+      <text x="48" y="356" font-size="16" fill="#a9b1d6">Dock, Finder, keyboard</text>
+      <text x="48" y="380" font-size="16" fill="#565f89">name, login items, power</text>
+    </g>
+  </g>
+
+  <!-- Arrows -->
+  <g stroke="#565f89" stroke-width="2" fill="none" marker-end="url(#arrow)">
+    <line x1="322" y1="115" x2="351" y2="115"/>
+    <line x1="647" y1="115" x2="676" y2="115"/>
+    <line x1="825" y1="202" x2="825" y2="236"/>
+    <line x1="678" y1="325" x2="649" y2="325"/>
+    <line x1="353" y1="325" x2="324" y2="325"/>
+  </g>
+</svg>
