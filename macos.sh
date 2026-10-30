@@ -40,6 +40,8 @@ defaults write com.apple.dock autohide-delay -float 0          # appear instantl
 defaults write com.apple.dock tilesize -int 40
 defaults write com.apple.dock show-recents -bool false
 defaults write com.apple.dock mru-spaces -bool false          # keep Spaces in order
+defaults write com.apple.dock showhidden -bool true           # dim icons of Cmd+H'd apps
+defaults write com.apple.dock minimize-to-application -bool true
 
 # Dock apps, left to right.
 if command -v dockutil >/dev/null; then
@@ -66,6 +68,9 @@ defaults write com.apple.finder NewWindowTarget -string "PfHm"        # new wind
 defaults write com.apple.finder NewWindowTargetPath -string "file://$HOME/"
 defaults write com.apple.finder FXDefaultSearchScope -string "SCcf"     # search current folder
 defaults write com.apple.finder FXEnableExtensionChangeWarning -bool false
+defaults write com.apple.finder _FXShowPosixPathInTitle -bool true    # full path in title
+defaults write NSGlobalDomain com.apple.springing.enabled -bool true   # drag onto a folder opens it
+defaults write NSGlobalDomain com.apple.springing.delay -float 0.1     # ...after 0.1s (default 0.5)
 defaults write com.apple.finder ShowExternalHardDrivesOnDesktop -bool true
 defaults write com.apple.finder ShowRemovableMediaOnDesktop -bool true
 defaults write com.apple.finder ShowMountedServersOnDesktop -bool true
@@ -86,6 +91,17 @@ defaults write NSGlobalDomain NSAutomaticDashSubstitutionEnabled -bool false
 defaults write NSGlobalDomain NSAutomaticPeriodSubstitutionEnabled -bool false
 defaults write NSGlobalDomain AppleKeyboardUIMode -int 2               # Tab through all controls
 
+# ---- Trackpad & windows (need a log out / log in) ------------------------
+# Three-finger drag; three-finger swipes move to four fingers, like System Settings does.
+for domain in com.apple.AppleMultitouchTrackpad com.apple.driver.AppleBluetoothMultitouch.trackpad; do
+  defaults write "$domain" TrackpadThreeFingerDrag -bool true
+  defaults write "$domain" TrackpadThreeFingerHorizSwipeGesture -int 0
+  defaults write "$domain" TrackpadThreeFingerVertSwipeGesture -int 0
+  defaults write "$domain" TrackpadFourFingerHorizSwipeGesture -int 2
+  defaults write "$domain" TrackpadFourFingerVertSwipeGesture -int 2
+done
+defaults write NSGlobalDomain NSWindowShouldDragOnGesture -bool true   # Ctrl+Cmd+drag moves windows
+
 # ---- Animations & desktop ------------------------------------------------
 defaults write NSGlobalDomain NSAutomaticWindowAnimationsEnabled -bool false  # no zoom on new windows
 defaults write NSGlobalDomain NSWindowResizeTime -float 0.001
@@ -96,6 +112,8 @@ defaults write com.apple.WindowManager EnableStandardClickToShowDesktop -bool fa
 # ---- Menu bar ------------------------------------------------------------
 defaults -currentHost write com.apple.controlcenter BatteryShowPercentage -bool true
 defaults -currentHost write com.apple.Spotlight MenuItemHidden -int 1
+defaults -currentHost write NSGlobalDomain NSStatusItemSpacing -int 8          # tighter icons (default 16)
+defaults -currentHost write NSGlobalDomain NSStatusItemSelectionPadding -int 6
 
 # ---- Free Cmd+Space for Raycast (set the hotkey in Raycast itself) -------
 defaults write com.apple.symbolichotkeys AppleSymbolicHotKeys -dict-add 64 \
@@ -115,6 +133,8 @@ defaults write com.apple.ActivityMonitor SortColumn -string "CPUUsage"
 defaults write com.apple.ActivityMonitor SortDirection -int 0
 defaults write com.apple.ActivityMonitor IconType -int 5              # CPU graph in Dock icon
 defaults -currentHost write com.apple.ImageCapture disableHotPlug -bool true  # Photos stays shut on plug-in
+defaults write com.apple.TimeMachine DoNotOfferNewDisksForBackup -bool true
+defaults write com.apple.CrashReporter UseUNC -int 1                  # crashes as notifications
 
 # ---- Keep Xcode build junk out of Spotlight ------------------------------
 # Spotlight skips any folder ending in .noindex.
@@ -133,7 +153,8 @@ mkdir -p "$HOME/Screenshots"
 defaults write com.apple.screencapture location -string "$HOME/Screenshots"
 defaults write com.apple.screencapture type -string "png"
 defaults write com.apple.screencapture disable-shadow -bool true
+defaults write com.apple.screencapture show-thumbnail -bool false   # save right away, no preview
 
 # ---- Apply ---------------------------------------------------------------
 killall Dock Finder SystemUIServer ControlCenter 2>/dev/null || true
-echo "macOS settings applied. Key repeat changes need a log out / log in."
+echo "macOS settings applied. Keyboard, trackpad and menu bar changes need a log out / log in."
