@@ -51,12 +51,12 @@ if command -v dockutil >/dev/null; then
   dockutil --remove all --no-restart
   for app in \
     "/Applications/Dia.app" \
+    "/Applications/Slack.app" \
     "/Applications/Ghostty.app" \
     "/Applications/Visual Studio Code.app" \
     "/Applications/Claude.app" \
     "/Applications/Figma.app" \
-    "/Applications/Discord.app" \
-    "/Applications/Slack.app"; do
+    "/Applications/Discord.app"; do
     [[ -d "$app" ]] && dockutil --add "$app" --no-restart
   done
 fi
