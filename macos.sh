@@ -16,14 +16,6 @@ fi
 # ---- Appearance ----------------------------------------------------------
 osascript -e 'tell application "System Events" to tell appearance preferences to set dark mode to false'  # light
 
-# ---- Displays: highest resolution ----------------------------------------
-# The LaunchAgent re-runs max-resolution at login and whenever displays change.
-agent="$HOME/Library/LaunchAgents/com.domenkoscak.max-resolution.plist"
-if [[ -f "$agent" ]]; then
-  launchctl bootout "gui/$(id -u)" "$agent" 2>/dev/null || true
-  launchctl bootstrap "gui/$(id -u)" "$agent"
-fi
-
 # ---- Default browser (macOS shows a confirmation dialog once) ------------
 if command -v defaultbrowser >/dev/null && [[ -d /Applications/Dia.app ]] \
    && ! defaultbrowser | grep -q '^\* dia$'; then
