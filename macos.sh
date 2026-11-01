@@ -163,7 +163,7 @@ sudo pmset -c sleep 0 displaysleep 10
 # ---- Screen lock: only when I lock it, so background agents keep going ----
 defaults -currentHost write com.apple.screensaver idleTime -int 0     # no screensaver
 if ! sysadminctl -screenLock status 2>&1 | grep -q "is off"; then
-  sysadminctl -screenLock off                                         # asks for your password
+  sysadminctl -screenLock off -password -                             # asks for your password
 fi
 
 # ---- Firewall & updates --------------------------------------------------
