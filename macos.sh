@@ -16,6 +16,12 @@ fi
 # ---- Appearance ----------------------------------------------------------
 osascript -e 'tell application "System Events" to tell appearance preferences to set dark mode to false'  # light
 
+# ---- Region: metric, Celsius, weeks start on Monday ----------------------
+defaults write NSGlobalDomain AppleMeasurementUnits -string "Centimeters"
+defaults write NSGlobalDomain AppleMetricUnits -bool true
+defaults write NSGlobalDomain AppleTemperatureUnit -string "Celsius"
+defaults write NSGlobalDomain AppleFirstWeekday -dict gregorian 2
+
 # ---- Default browser (macOS shows a confirmation dialog once) ------------
 if command -v defaultbrowser >/dev/null && [[ -d /Applications/Dia.app ]] \
    && ! defaultbrowser | grep -q '^\* dia$'; then
@@ -84,6 +90,7 @@ defaults write com.apple.finder ShowHardDrivesOnDesktop -bool false
 chflags nohidden "$HOME/Library"
 defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true
 defaults write com.apple.desktopservices DSDontWriteUSBStores -bool true
+defaults write com.apple.finder FXRemoveOldTrashItems -bool true      # empty trash items after 30 days
 
 # ---- Keyboard & text -----------------------------------------------------
 defaults write NSGlobalDomain KeyRepeat -int 2
@@ -115,6 +122,7 @@ defaults write NSGlobalDomain NSWindowResizeTime -float 0.001
 defaults write com.apple.dock expose-animation-duration -float 0.1            # Mission Control
 defaults write com.apple.dock autohide-time-modifier -float 0.3               # Dock slide
 defaults write com.apple.WindowManager EnableStandardClickToShowDesktop -bool false
+defaults write com.apple.WindowManager EnableTiledWindowMargins -bool false   # no gaps between tiled windows
 
 # ---- Menu bar ------------------------------------------------------------
 defaults -currentHost write com.apple.controlcenter BatteryShowPercentage -bool true
@@ -151,6 +159,18 @@ defaults write com.apple.dt.Xcode IDECustomDerivedDataLocation -string "$HOME/Li
 
 # ---- Power: on the charger the display sleeps, the Mac doesn't ----------
 sudo pmset -c sleep 0 displaysleep 10
+
+# ---- Screen lock: only when I lock it, so background agents keep going ----
+defaults -currentHost write com.apple.screensaver idleTime -int 0     # no screensaver
+if ! sysadminctl -screenLock status 2>&1 | grep -q "is off"; then
+  sysadminctl -screenLock off                                         # asks for your password
+fi
+
+# ---- Firewall & updates --------------------------------------------------
+sudo /usr/libexec/ApplicationFirewall/socketfilterfw --setglobalstate on >/dev/null
+for key in AutomaticCheckEnabled AutomaticDownload CriticalUpdateInstall ConfigDataInstall; do
+  sudo defaults write /Library/Preferences/com.apple.SoftwareUpdate "$key" -bool true
+done
 
 # ---- Touch ID for sudo (asks for your password once) ---------------------
 if ! grep -qs pam_tid.so /etc/pam.d/sudo_local; then

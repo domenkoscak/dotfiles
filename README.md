@@ -111,7 +111,9 @@ git clone https://github.com/domenkoscak/dotfiles.git ~/dotfiles
 
 - [ ] **Log out and back in** (keyboard repeat needs it).
 - [ ] **Ghostty**: press **Ctrl+\`** once and allow Accessibility for the quick terminal.
-- [ ] **Raycast**: set its hotkey to **Cmd+Space** (Spotlight's is already freed).
+- [ ] **Raycast**: set its hotkey to **Cmd+Space** (Spotlight's is already freed), then bring back its settings,
+      snippets and extensions: sign in for Cloud Sync (Pro), or **Settings → Advanced → Import** a
+      `.rayconfig` export (kept in 1Password, not this public repo).
 - [ ] Sign in to Figma, Discord, Slack, Claude, Logi Options+, Stats, Bambu Studio, OrbStack.
 - [ ] **FreeCAD**: open it once. The MCP addon starts its server by itself; Claude can drive FreeCAD
       whenever it's open (check with `claude mcp list`).

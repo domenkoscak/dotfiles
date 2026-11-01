@@ -1,3 +1,6 @@
+# OrbStack's 'orb' host for its Linux machines. Must stay above any Host block.
+Include ~/.orbstack/ssh/config
+
 # All SSH keys live in 1Password; its agent serves them.
 Host *
 	IdentityAgent "~/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock"

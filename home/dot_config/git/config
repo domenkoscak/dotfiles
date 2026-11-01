@@ -18,5 +18,22 @@
 	program = /Applications/1Password.app/Contents/MacOS/op-ssh-sign
 	allowedSignersFile = ~/.config/git/allowed_signers
 
+[init]
+	defaultBranch = master
+[pull]
+	rebase = true          # no merge commits from pulls
+[rebase]
+	autoStash = true
+[fetch]
+	prune = true           # drop branches deleted on the remote
+[merge]
+	conflictStyle = zdiff3 # also show the original in conflicts
+[rerere]
+	enabled = true         # remember how conflicts were resolved
+[diff]
+	algorithm = histogram
+[branch]
+	sort = -committerdate  # recent branches first
+
 [push]
 	autoSetupRemote = true
