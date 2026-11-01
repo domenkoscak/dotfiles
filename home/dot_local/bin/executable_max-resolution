@@ -1,0 +1,29 @@
+#!/bin/bash
+# Set every connected display to its highest resolution (most pixels, then highest Hz).
+# Runs at login and whenever the display setup changes (LaunchAgent), and from macos.sh.
+set -euo pipefail
+export PATH="/opt/homebrew/bin:$PATH"
+command -v displayplacer >/dev/null || exit 0
+
+# One line per screen: "<id> <best res> <best hz> <best scaling> <current res> <current hz>"
+displayplacer list | awk '
+  function flush() {
+    if (id != "") print id, best, besthz, bestsc, cur, curhz
+    id = ""; best = ""; bestpx = 0; besthz = 0; bestsc = "off"
+  }
+  /^Persistent screen id:/ { flush(); id = $4 }
+  /^Resolution:/           { cur = $2 }
+  /^Hertz:/                { curhz = $2 }
+  /^ *mode [0-9]+:/ {
+    split($3, r, ":"); split($4, h, ":"); split(r[2], d, "x")
+    px = d[1] * d[2]; hz = h[2] + 0
+    if (px > bestpx || (px == bestpx && hz > besthz)) {
+      bestpx = px; best = r[2]; besthz = hz; bestsc = (/scaling:on/ ? "on" : "off")
+    }
+  }
+  END { flush() }
+' | while read -r id res hz scaling cur curhz; do
+  [[ "$res" == "$cur" && "$hz" == "$curhz" ]] && continue
+  echo "$id: $cur@$curhz -> $res@$hz"
+  displayplacer "id:$id res:$res hz:$hz scaling:$scaling"
+done

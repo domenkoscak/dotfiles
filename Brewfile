@@ -20,6 +20,7 @@ brew "ripgrep"
 brew "mas"        # App Store CLI
 brew "dockutil"   # used by macos.sh to set the Dock
 brew "defaultbrowser"  # used by macos.sh to make Dia the default
+brew "displayplacer"   # used by max-resolution to set every display to its highest resolution
 
 # ---- Dev CLI -------------------------------------------------------------
 brew "gh"

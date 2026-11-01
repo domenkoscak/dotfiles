@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!-- Keeps every display at its highest resolution: at login and whenever a display is plugged in or changed. -->
+<plist version="1.0">
+<dict>
+  <key>Label</key>
+  <string>com.domenkoscak.max-resolution</string>
+  <key>ProgramArguments</key>
+  <array>
+    <string>{{ .chezmoi.homeDir }}/.local/bin/max-resolution</string>
+  </array>
+  <key>RunAtLoad</key>
+  <true/>
+  <key>WatchPaths</key>
+  <array>
+    <string>/Library/Preferences/com.apple.windowserver.displays.plist</string>
+  </array>
+  <key>ThrottleInterval</key>
+  <integer>5</integer>
+</dict>
+</plist>

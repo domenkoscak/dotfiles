@@ -38,7 +38,7 @@
 | 📦 **Languages** | mise: Node LTS, pnpm, bun, Python. uv from Homebrew. Projects can pin their own versions. |
 | 🧑‍💻 **VS Code** | Tokyo Night, format on save, file nesting, Ghostty-style terminal, 10 extensions. |
 | 🧊 **3D / CAD** | FreeCAD with an MCP addon so Claude can model in it, `newpart` for build123d code-CAD, Bambu Studio for printing. |
-| 🍎 **macOS** | Dock, Finder, keyboard, screenshots, dark mode, Touch ID for `sudo`, login items, computer name. |
+| 🍎 **macOS** | Dock, Finder, keyboard, screenshots, light mode, highest display resolution, Touch ID for `sudo`, login items, computer name. |
 | 🍺 **Apps** | Everything in the [`Brewfile`](Brewfile), including App Store apps. |
 
 ---
@@ -88,7 +88,7 @@ git clone https://github.com/domenkoscak/dotfiles.git ~/dotfiles
 
 > [!TIP]
 > macOS pops up a few questions on the way. Say yes to **"Terminal wants to control System Events"**
-> (dark mode, login items) and click **Use Dia** for the default browser.
+> (light mode, login items) and click **Use Dia** for the default browser.
 
 > [!NOTE]
 > If something fails halfway, fix the cause and run `chezmoi apply`. It picks up where it left off.
@@ -287,9 +287,11 @@ home/                    Everything chezmoi puts in ~ (see .chezmoiroot)
 │   ├── git/                      git config, signing, personal override
 │   ├── build123d/part.py         starter part for `newpart`
 │   └── mise/config.toml          node, pnpm, bun, python
+├── dot_local/bin/max-resolution  sets every display to its highest resolution
 ├── private_dot_ssh/              SSH config for the 1Password agent (public key only)
 ├── Library/…/Code/User/          VS Code settings
 ├── Library/…/FreeCAD/            FreeCAD MCP addon auto-start setting
+├── Library/LaunchAgents/         runs max-resolution at login and on display changes
 └── run_*                         brew bundle, mise install, VS Code extensions, Claude MCP servers, macos.sh
 ```
 
