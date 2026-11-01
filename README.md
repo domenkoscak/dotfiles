@@ -38,7 +38,7 @@
 | 📦 **Languages** | mise: Node LTS, pnpm, bun, Python. uv from Homebrew. Projects can pin their own versions. |
 | 🧑‍💻 **VS Code** | Tokyo Night, format on save, file nesting, Ghostty-style terminal, 10 extensions. |
 | 🧊 **3D / CAD** | FreeCAD with an MCP addon so Claude can model in it, `newpart` for build123d code-CAD, Bambu Studio for printing. |
-| 🍎 **macOS** | Dock, Finder, keyboard, screenshots, light mode, highest display resolution, Touch ID for `sudo`, login items, computer name. |
+| 🍎 **macOS** | Dock, Finder, keyboard, screenshots, light mode, 24-hour clock, highest display resolution, Touch ID for `sudo`, login items, computer name. |
 | 🍺 **Apps** | Everything in the [`Brewfile`](Brewfile), including App Store apps. |
 
 ---

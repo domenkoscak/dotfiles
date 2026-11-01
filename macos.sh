@@ -129,6 +129,8 @@ defaults -currentHost write com.apple.controlcenter BatteryShowPercentage -bool 
 defaults -currentHost write com.apple.Spotlight MenuItemHidden -int 1
 defaults -currentHost write NSGlobalDomain NSStatusItemSpacing -int 8          # tighter icons (default 16)
 defaults -currentHost write NSGlobalDomain NSStatusItemSelectionPadding -int 6
+defaults write NSGlobalDomain AppleICUForce24HourTime -bool true            # 24-hour clock everywhere
+defaults write com.apple.menuextra.clock ShowAMPM -bool false
 
 # ---- Free Cmd+Space for Raycast (set the hotkey in Raycast itself) -------
 defaults write com.apple.symbolichotkeys AppleSymbolicHotKeys -dict-add 64 \
