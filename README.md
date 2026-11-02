@@ -289,6 +289,7 @@ home/                    Everything chezmoi puts in ~ (see .chezmoiroot)
 │   ├── git/                      git config, signing, personal override
 │   ├── build123d/part.py         starter part for `newpart`
 │   └── mise/config.toml          node, pnpm, bun, python
+├── dot_claude/settings.json      Claude Code: no attribution lines in commits or PRs
 ├── private_dot_ssh/              SSH config for the 1Password agent (public key only)
 ├── Library/…/Code/User/          VS Code settings
 ├── Library/…/FreeCAD/            FreeCAD MCP addon auto-start setting
