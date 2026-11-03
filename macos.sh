@@ -74,6 +74,7 @@ defaults write com.apple.finder AppleShowAllFiles -bool true
 defaults write NSGlobalDomain AppleShowAllExtensions -bool true
 defaults write com.apple.finder ShowPathbar -bool true
 defaults write com.apple.finder ShowStatusBar -bool true
+defaults write com.apple.finder ShowPreviewPane -bool true          # preview on the right (Cmd+Shift+P)
 defaults write com.apple.finder FXPreferredViewStyle -string "Nlsv"   # list view
 defaults write com.apple.finder _FXSortFoldersFirst -bool true
 defaults write com.apple.finder NewWindowTarget -string "PfHm"        # new window = Home
